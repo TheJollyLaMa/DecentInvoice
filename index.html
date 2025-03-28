@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Decent Invoice</title>
+  <link rel="icon" href="./img/favicon.png" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/timeline.css" />
+  <!-- Ethers.js for Web3 functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="centered-title">
+      <div class="title">
+        <img src="./img/favicon.png" alt="favicon" class="favicon">
+        <h1>- ⸬ - Decent ☂ Invoice - ⸬ -</h1>
+        <img src="./img/favicon.png" alt="favicon" class="favicon">
+      </div>
+      <div class="wallet-display" id="account">
+        <span id="wallet-address-start">0x0000</span>
+        <span class="icons">
+          <img src="./img/Eth.gif" class="icon" />
+          <img src="./img/favicon.png" class="icon" />
+          <img src="./img/SecretPyramid.png" class="icon" />
+          <img src="./img/favicon.png" class="icon" />
+          <img src="./img/Eth.gif" class="icon" />
+        </span>
+        <span id="wallet-address-end">0000</span>
+      </div>
+    </div>
+    <button id="connect-wallet" class="wallet-button disconnected">
+      <img src="./img/metamask.png" alt="MetaMask" />
+    </button>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Owner-only form -->
+    <div id="invoice-form-section" class="hidden">
+      <h2>Create Invoice</h2>
+      <form id="createInvoiceForm">
+        <label for="client">Client Address:</label>
+        <input type="text" id="client" required />
+
+        <label for="token">Token Address:</label>
+        <input type="text" id="token" required />
+
+        <label for="amount">Amount (in smallest unit):</label>
+        <input type="number" id="amount" required />
+
+        <label for="expiry">Expiry (UNIX timestamp):</label>
+        <input type="number" id="expiry" required />
+
+        <label for="issueUrl">GitHub Issue URL:</label>
+        <input type="text" id="issueUrl" required />
+
+        <label for="previewCid">Preview IPFS CID (video demo):</label>
+        <input type="text" id="previewCid" />
+
+        <label for="solutionCid">Solution IPFS CID:</label>
+        <input type="text" id="solutionCid" />
+
+        <button type="submit">Submit Invoice</button>
+      </form>
+      <div id="createResult" class="message"></div>
+    </div>
+
+    <!-- Timeline -->
+    <h2 class="timeline-title">Open Invoices</h2>
+    <div class="timeline-container" id="timeline-container">
+      <!-- Cards injected here -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div id="contract-address-display"></div>
+  </div>
+
+  <!-- JS Entry -->
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

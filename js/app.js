@@ -1,4 +1,5 @@
 // js/app.js
+import { DecentHead } from '../decent-head.js';
 import { formatAddress } from "./wallet.js";
 import { loadABI, initContract, contractAddress } from "./contract.js";
 import { displayOpenInvoices } from "./timeline.js";
@@ -21,8 +22,7 @@ async function connectWallet() {
   }
 
   try {
-    const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-    userAddress = accounts[0];
+    throw new Error('Legacy invoice contract unavailable: deployment chain is not independently configured. Use default/index.html with a verified deployment, or npm run preview for synthetic actors.');
 
     const providerInstance = new ethers.providers.Web3Provider(window.ethereum);
     provider = providerInstance;
@@ -124,10 +124,17 @@ async function connectWallet() {
     console.error("Error connecting wallet:", error);
     walletButton.classList.remove("connected");
     walletButton.classList.add("disconnected");
+    document.getElementById("account").textContent = error.message;
+    document.getElementById("legacy-status").textContent = error.message;
   }
 }
 
 document.getElementById("connect-wallet").addEventListener("click", connectWallet);
+DecentHead.on('wallet', () => {
+  invoiceContract = null; userAddress = null; isOwner = false;
+  document.getElementById('invoice-form-section').classList.add('hidden');
+  document.getElementById('account').textContent = 'Legacy contract unavailable: unverified deployment chain. Use the default workspace.';
+});
 
 /**
  * Displays the contract address in the footer.

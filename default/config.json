@@ -1,0 +1,9 @@
+{
+  "kind": "invoice",
+  "title": "DecentInvoice V1",
+  "contractName": "DecentInvoiceV1",
+  "port": 4312,
+  "mode": "unconfigured",
+  "chainId": null,
+  "address": ""
+}

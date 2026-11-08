@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Decent Invoice</title>
   <link rel="icon" href="./img/favicon.png" />
   <link rel="stylesheet" href="./css/base.css" />
@@ -11,8 +12,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
 </head>
 <body>
+  <decent-header></decent-header>
+  <script type="module" src="./decent-head.js"></script>
   <!-- Header -->
-  <header class="header">
+  <header class="header" hidden style="display:none">
     <div class="centered-title">
       <div class="title">
         <img src="./img/favicon.png" alt="favicon" class="favicon">
@@ -38,6 +41,8 @@
 
   <!-- Main Content -->
   <div class="content">
+    <p id="legacy-status" role="status">Legacy contract unavailable: unverified deployment chain. Use the default workspace.</p>
+    <p><a href="./default/index.html">Open the default invoice workspace</a></p>
     <!-- Owner-only form -->
     <div id="invoice-form-section" class="hidden">
       <h2>Create Invoice</h2>
